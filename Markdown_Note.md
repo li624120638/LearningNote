@@ -77,14 +77,9 @@ ___ 或者 ---
 \> 1. 第一层2  
 \>> - 第二层  
 效果如下：
-
 > 1. 第一层1  
 > 1. 第一层2  
 >> - 第二层  
-
-
-
-
 # 6. 代码
 >代码区块、行内代码、声明语言代码
 ## 6.1 代码区块
@@ -116,3 +111,30 @@ for i in range(10):
     print(i)  
 ```  
 # 7. 链接
+> 常用链接、直接使用连接、变量链接
+## 7.1 常用链接
+> \[链接名称](链接url)  
+\[百度](https://www.baidu.com) -> [百度](www.baidu.com)
+## 7.2 直接使用链接
+> <链接url>  链接url要加上协议  
+\<https://www.baidu.com> -> <https://www.baidu.com>
+## 7.3 变量链接
+>以[链接名][链接变量]的形式声明，  
+然后在与声明不相连的地方对链接变量进行赋值：[链接变量]: 链接url  
+与声明不相连的地方是指：上方空至少1格，或下方空至少1格  
+每行赋值一个链接变量
+
+```
+[google]: https://www.google.com
+[baidu]: https://www.baidu.com 
+
+[Baidu][baidu]  
+[Goole][google]  
+```
+>效果如下：  
+[Baidu][baidu]  
+[Goole][google] 
+
+[google]: https://www.google.com
+[baidu]: https://www.baidu.com 
+# 图片
