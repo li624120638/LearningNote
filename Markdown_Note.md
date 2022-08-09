@@ -179,14 +179,14 @@ for i in range(10):
 ## 8.2 html加载图片
 >使用html的<img>标签  
 >```
-><img src="url" width='200px' height='50%' alt='' title='' >   
+><img src=url' width='200px' height='50%' alt='' title='' >   
 >```
 >可以调整宽高：%或者px  
 >例：
 >```
-><img src="./images/pikachu.jpg" >width='50%' alt="皮卡丘" title='皮卡丘'>  
+><img src='./images/pikachu.jpg' width='10%' alt='皮卡丘' title='皮卡丘'>  
 >```
 >效果如下：  
-><img src="./images/pikachu.jpg" width='50%' alt="皮卡丘" title='皮卡丘'>  
+><img src='./images/pikachu.jpg' width='10%' alt="皮卡丘" title='皮卡丘'>  
 
 
