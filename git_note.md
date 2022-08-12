@@ -218,3 +218,66 @@ git config --global user.name "lgx"
 >
 > -f：local_branch与remote_branch信息不一致，强行合并
 
+# 5. 忽略.gitignore
+
+> 忽略某些文件，使其不加入到git仓库中，如动态环境、环境、模型、数据集等。有文件结构如下：
+>
+> ```
+> .
+> ├── folder
+> │   └── file1
+> └── src
+>     ├── folder
+>     └── utils
+>         └── folder
+> ```
+
+## 5.1 使用要点
+
+> - 空行不匹配任何文件
+> - 一行只表示一个模式
+> - git是记录并追踪文件，而不是目录。只有目录下有文件，该目录才会被追踪。
+> - 如果文件已经被追踪，.gitignore会对该文件无效。<font color="#ff0000">**故要尽早建立.gitignore**</font>
+> - .gitignore也应被上传到仓库中
+
+## 5.2 例子
+
+> 有如下文件结构：
+>
+> ```
+> .
+> ├── folder
+> │   └── file1
+> └── src
+>     ├── folder
+>     └── utils
+>         └── folder
+> ```
+
+>- 注释：#
+>
+>- 忽略文件与目录：
+>
+>  > .gitignore中的一行写入`folder`，会忽略folder目录和folder文件，会自动搜索<font color="#ff0000">**多级目录**</font>，比如`./src/utils/folder`也会被忽略。
+>
+>- 忽略文件：.gitignore中的写入
+>
+>  > ```
+>  > folder
+>  > !folder/
+>  > ```
+>  >
+>  > 显示忽略所有`folder`文件和目录，再通过`!folder/`取消对`folder`目录的忽略
+>
+>- 忽略目录：
+>
+>  > .gitignore中的一行写入`folder/`，只会忽略folder目录，会自动搜索<font color="#ff0000">**多级目录**</font>
+>
+>- 通配符：
+>
+>  > - 星号* ：匹配任意多个字符，如.gitignore中一行写入`*.pyc`，则忽略所有.pcy结尾的文件
+>  > - 问号?：匹配除/以外的一个字符
+>  > - 双星号** :表示多级目录，如`/src/**/folder`
+>  > - 叹号!：表示之前忽略的匹配模式，再次包含在跟踪内容里。如忽略文件用法
+>  > - 方括号[]：匹配[]中的一个字符，如[a-z]可以匹配a-z中的一个字符
+
