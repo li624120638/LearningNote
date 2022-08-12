@@ -1,7 +1,9 @@
-> Author:lgx  
-> Date:2022.08.12 11:31:21  
->Email:geniuslgx@mail.ustc.edu.cn  
->说明：[可选参数]  <必要参数>  
+> ```
+> Author:lgx
+> Date:2022.08.12 11:31:21
+> Email:geniuslgx@mail.ustc.edu.cn 
+> 说明：[可选参数]  <必要参数>  a/b表示a或b
+> ```
 
 # 1. 仓库管理
 >初始化、克隆、删除
@@ -36,15 +38,156 @@ git config --global user.name "lgx"
 >```
 ### 1.4.3 设置缓冲区大小
 >一次性添加的文件太多，超过缓冲大小，无法上传remote
+>
 >设置缓冲区大小为1GB：
 >
 >```
 >git config --global http.postBuffer 1048576000
 >```
 # 2.修改与提交
->添加、删除、恢复、对比、提交
+>添加、删除、恢复、对比、提交、日志
 ## 2.1 git add 
 >```
->git add [file1/dir1] [file2/dir2] …
+>git add <file1/dir1> [file2/dir2] …
 >```
-> 添加文件或文件夹到 ==暂存区==。支持通配符，如*.png
+> 添加文件或文件夹到 <font color="#ff0000">**暂存区**</font>。支持<font color="#ff0000">**通配符**</font>，如*.png
+
+## 2.2 git rm
+
+> ```
+> git rm [-rf] <file1/dir1> [file2/dir2] …
+> ```
+>
+> 删除<font color="#ff0000">**工作区**</font>和<font color="#ff0000">**暂存区**</font>中的文件或文件夹。支持<font color="#ff0000">**通配符**</font>，如*.png
+>
+> 如果是手工(rm)删除文件，<font color="#ff0000">**只会删除工作区**</font>中的文件
+>
+> git mv 与mv 原理与上相同
+## 2.3 git restore
+
+> ```
+> git restore [-staged] <file1/dir1> [file2/dir2] …
+> ```
+>
+> 恢复<font color="#ff0000">**手动(rm)**</font>删除的<font color="#ff0000">**工作区**</font>文件
+>
+> <font color="#ff0000">**--staged**</font>，恢复git rm 删除的<font color="#ff0000">**暂存区**</font>的文件
+>
+> 先恢复暂存区，再恢复工作区
+
+## 2.4 git diff
+
+> ```
+> git diff [file1/dir1] [file2/dir3] …
+> ```
+>
+> 查看<font color="#ff0000">**暂存区**</font>文件/文件夹与<font color="#ff0000">**工作区**</font>的区别，暂存区中必须要有该文件才能比较。
+>
+> 新建文件后，应该通过git add 加入暂存区，方便后续比较。
+
+## 2.5 git commit
+
+> ```
+> git commit [file1/dir1] [file2/dir3] … -m message
+> ```
+>
+> 将<font color="#ff0000">**暂存区**</font>的文件/文件夹提交到<font color="#ff0000">**本地**</font>。
+>
+> <font color="#ff0000">**切换分支前**</font>前，一定要git commit
+
+## 2.6 git status
+
+> ```
+> git status [file1/dir1] [file2/dir3]
+> ```
+>
+> 比较<font color="#ff0000">**暂存区**</font>与<font color="#ff0000">**本地仓库**</font>的区别
+
+## 2.7 git log
+
+> ```
+> git log
+> ```
+>
+> 查看git commit的历史信息
+
+## 2.8 git revert
+
+> ```
+> git revert <commit_id>
+> ```
+>
+> 回退到commit_id时的环境
+
+## 2.9 git show
+
+> ```
+> git show [commit_id]
+> ```
+>
+> 查看指定commit_id的变动信息
+
+# 3. 分支
+
+> 添加、删除、重命名、合并
+
+## 3.1 git branch
+
+> ```
+> git branch [-d/D][-m/M new_name][branch_name] 
+> ```
+>
+> 查看所有分支，或者新建branch_name分支
+>
+> -d/D 删除branch_name分支
+>
+> -m/M 重命名当前分支
+
+## 3.2 git checkout/switch
+
+> ```
+> git checkout/switch <branch_name>
+> ```
+>
+> 切换到branch_name分支
+
+## 3.3 git merge
+
+> ```
+> git merge <branch_name>
+> ```
+>
+> 将brach_name分支，合并到当前分支
+>
+> merge原则：
+>
+> - 在main分支中输入`git branch b1` 创建b1分支，b1分支中会带有main分支中的所有文件，在b1分支中对这些文件修改、删除，最终合并到main分支中，也会对应修改、删除
+> - b1分支中新建的文件，merge main分支和被main分支merge时，都会保留
+> - main分支中新建的文件，merge b1分支和被b1分支merge时，都会保留
+> - 若b1分支和main分支中，新建的文件名一样，则merge时会产生冲突
+
+# 4. 远程
+
+> 添加删除远程仓库、推送、拉取
+
+## 4.1 git remote
+
+>```
+>git remote [-v][add shortname url][rm/remove shortname][rename old_name new_name]	
+>```
+>
+>-v： 查看现有远程仓库
+>
+>add：将url取别名为shortname，并作为远程仓库
+>
+>rm/remove：删除远程名为shortname的远程仓库
+>
+>rename：将名为old_name的远程仓库重命名为new_name
+
+## 4.2 git pull
+
+> ```
+> git pull <shortname> < remote_branch >[:local_branch]
+> ```
+>
+> 将远程仓库shortname中的remote_branch分支下载到本地仓库的loacl_branch分支并合并（merge）。如果local_branch== remote_branch，则remote_branch可以省略
