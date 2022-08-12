@@ -184,10 +184,37 @@ git config --global user.name "lgx"
 >
 >rename：将名为old_name的远程仓库重命名为new_name
 
-## 4.2 git pull
+## 4.2 git fetch
+
+> ```
+> git fetch <shortname><branch_name>
+> ```
+>
+> 将远程仓库shortname中的branch_name分支的commit的信息放入<font color="#ff0000">**FETCH_HEAD**</font>中
+>
+> 可通过`git log FETCH_HEAD`来查看所获取分支的commit信息
+>
+> 可通过`git merge FETCH_HEAD`来merge所获取的分支 
+
+## 4.3 git pull
 
 > ```
 > git pull <shortname> < remote_branch >[:local_branch]
 > ```
 >
-> 将远程仓库shortname中的remote_branch分支下载到本地仓库的loacl_branch分支并合并（merge）。如果local_branch== remote_branch，则remote_branch可以省略
+> 如果local_branch== remote_branch，则remote_branch可以省略
+>
+> 等价于`git fetch shortname remote_branch`  + `git merge FETCH_HEAD`
+
+## 4.4 git push
+
+> ```
+> git push <shortname> [-d][-f] <local_branch>[:remote_branch]
+> ```
+>
+> 将本地local_branch分支下的文件上传到远程仓库shortname中的remote_branch分支，并<font color="#ff0000">**合并**</font>
+>
+> -d：删除远程仓库shortname中的remote_branch分支
+>
+> -f：local_branch与remote_branch信息不一致，强行合并
+
