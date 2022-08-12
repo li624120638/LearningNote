@@ -220,17 +220,7 @@ git config --global user.name "lgx"
 
 # 5. 忽略.gitignore
 
-> 忽略某些文件，使其不加入到git仓库中，如动态环境、环境、模型、数据集等。有文件结构如下：
->
-> ```
-> .
-> ├── folder
-> │   └── file1
-> └── src
->     ├── folder
->     └── utils
->         └── folder
-> ```
+> 忽略某些文件，使其不加入到git仓库中，如动态环境、环境、模型、数据集等。
 
 ## 5.1 使用要点
 
