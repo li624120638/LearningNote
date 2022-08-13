@@ -269,4 +269,8 @@ Email:geniuslgx@mail.ustc.edu.com
 >`$公式表达$` 
 >
 >`$a_1^2=5$` -> $a_1^2=5$
+>
+>Typora设置：文件-偏好设置-markdown-内联公式勾选，重新打开Typora
+>
+>github设置：google浏览器添加`MathJax Plugin for Github`插件
 
