@@ -10,7 +10,7 @@
 
 > - Deep High-Resolution Representation Learning for Human Pose Estimation
 >
->   > Author:Ke Sun ;Organization:USTC
+>   > Author:Ke Sun ;Organization:USTC;CVPR2019
 >   >
 >   > HRNnet:
 >
@@ -20,10 +20,10 @@
 
 >- Revisiting Skeleton-based Action Recognition
 >
->>arXiv:2104.13586;CVPR2022
+>>arXiv:2104.13586;CVPR2022;[implementation](https://github.com/kennymckormick/pyskl)
 >>
->>PoseConv3D:
+>>PoseConv3D
 >>
->>
+>>3D Heatmap Volume
 >
->- aaa
+>- ...
