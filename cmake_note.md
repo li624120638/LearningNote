@@ -151,6 +151,8 @@ Email:geniuslgx@mail.ustc.edu.com
 >
 >  > 编译后，激活指定宏名
 >  >
+>  > 如：有main.cpp如下
+>  >
 >  > ```c++
 >  > #include<iostream>
 >  > int main(){
@@ -161,6 +163,6 @@ Email:geniuslgx@mail.ustc.edu.com
 >  > }
 >  > ```
 >  >
->  > 如：`g++ -DDEBUG main.cpp -o main`后执行`./main`会输出，debug
+>  > `g++ -DDEBUG main.cpp -o main`后执行`./main`会输出，debug
 >  >
 >  > 而`g++  main.cpp -o main`后执行./main，不会输出debug
