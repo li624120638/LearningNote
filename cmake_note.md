@@ -216,29 +216,33 @@ Email:geniuslgx@mail.ustc.edu.com
 >
 >- step1  生成动态库
 >
-> ```bash
->cd src
->g++ swap.cpp -I ../include/ -fPIC -shared -o libswap.so
-> ```
+>> ```bash
+>> cd src
+>> g++ swap.cpp -I ../include/ -fPIC -shared -o libswap.so
+>> ```
+>>
+>> -fPIC：表示与路径无关
+>>
+>> -shared：表示生成动态库
 >
 >- step2  编译
 >
-> ```bash
-> cd ..
-> g++ main.cpp -l swap -L src/ -I include/ -o dynamic_main
-> ```
+>> ```bash
+>> cd ..
+>> g++ main.cpp -l swap -L src/ -I include/ -o dynamic_main
+>> ```
 >
 >- step3 指定动态库目录
 >
->  >永久指定
->  >
->  >```bash
->  >echo export LD_LIBRARY_PATH=/home/tmo/swap_demo/src:$LD_LIBRARY_PATH >> ~/.basrc
->  >source ~/.bashrc
->  >```
+> >永久指定
+> >
+> >```bash
+> >echo export LD_LIBRARY_PATH=/home/tmo/swap_demo/src:$LD_LIBRARY_PATH >> ~/.basrc
+> >source ~/.bashrc
+> >```
 >
->  > 临时指定
->  >
->  > ```bash
->  > LD_LIBRARY_PATH=/home/tmo/swap_demo/src
->  > ```
+> > 临时指定
+> >
+> > ```bash
+> > LD_LIBRARY_PATH=/home/tmo/swap_demo/src
+> > ```

@@ -6,14 +6,14 @@
 >
 > - step1 Setting up Docker
 >
->   ``` 
+>   ``` bash
 >   curl https://get.docker.com | sh \
 >     && sudo systemctl --now enable docker
 >   ```
 >
 > - step2 Setting up NVIDIA Container Toolkit
 >
->   ``` 
+>   ``` bash
 >   distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
 >         && curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
 >         && curl -s -L https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.list | \
@@ -22,7 +22,7 @@
 >
 > - step3 Install
 >
->   ``` 
+>   ``` bash
 >   sudo apt-get update
 >   sudo apt-get install -y nvidia-docker2
 >   sudo systemctl restart docker
@@ -58,7 +58,7 @@
 
 ## 2.2 docker save
 
-> ```
+> ```bash
 > docker save [OPTIONS] IMAGE
 > ```
 >
@@ -70,7 +70,7 @@
 
 ## 2.1 docker load
 
-> ```
+> ```bash
 > docker load [OPTIONS]
 > ```
 >
@@ -88,7 +88,7 @@ TODO:
 
 # 3. 容器
 
->```
+>```bash
 >ctname='lgx_tensorrt'
 >imagename='lgx_tersorrt:trt8016'
 >mountpath='/home/imagexx/lgx'
