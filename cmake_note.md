@@ -79,7 +79,7 @@ Email:geniuslgx@mail.ustc.edu.com
 > | 优点 | 目标程序较小，且可以动态更换指定的依赖库 | 直接整合到目标程序中，目标程序可**独立运行** |
 > | 缺点 |           目标程序不可独立执行           |    目标程序较大，且升级时需要**重新编译**    |
 
-# 1. g++(gcc)
+# 1. g++(gcc)编译器
 
 ## 1.1 安装
 
@@ -246,3 +246,11 @@ Email:geniuslgx@mail.ustc.edu.com
 > > ```bash
 > > LD_LIBRARY_PATH=/home/tmo/swap_demo/src
 > > ```
+
+# 2. gdb调试器
+
+> 只有带**-g**选项编译的可执行文件，才能用gdb调试
+>
+> 如：`g++ -g main.cpp -o m1`生成的m1可以调试，`g++ main.cpp -o m2`生成的m2不能调试
+
+## 2.1 
