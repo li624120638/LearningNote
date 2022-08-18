@@ -83,7 +83,7 @@ Email:geniuslgx@mail.ustc.edu.com
 
 ## 1.1 安装
 
-> ``` 
+> ``` bash
 > apt install g++ gcc
 > ```
 
@@ -121,13 +121,13 @@ Email:geniuslgx@mail.ustc.edu.com
 >
 >- -l 与 -L 指定库文件和指定库目录
 >
->  > -l （L的小写）指定库名，库名**紧跟着**-l
+>  > -l （L的小写）指定库名
 >  >
->  > 如：`g++ -lglob main.cpp`
+>  > 如：`g++ -l glob main.cpp` 在系统库目录中找**libglob.a**或者**libglob.so**
 >  >
->  > 若系统默认的库目录中（/lib、/usr/lib和/usr/local/lib）没有指定的库，则需要-L来指定其库目录
+>  > 若系统默认的库目录中（/lib、/usr/lib和/usr/local/lib）没有指定的库文件，则需要-L来指定其库目录
 >  >
->  > 如：`g++ -L/home/mylibfolder/ -lmylib main.cpp -o main	 `
+>  > 如：`g++ -L /home/mylibfolder/ -l mylib main.cpp -o main	 `
 >
 >- -I 指定头文件搜索目录
 >
@@ -166,3 +166,79 @@ Email:geniuslgx@mail.ustc.edu.com
 >  > `g++ -DDEBUG main.cpp -o main`后执行`./main`会输出，debug
 >  >
 >  > 而`g++  main.cpp -o main`后执行./main，不会输出debug
+
+## 1.4 静态库编译
+
+>文件结构如下：
+>
+>```bash
+>.
+>├── include
+>│   └── swap.h
+>├── main.cpp
+>└── src
+>    └── swap.cpp
+>```
+>
+>- step1 汇编生成swap.o
+>
+>  ```bash
+>  cd src
+>  g++ swap.cpp -c -I ../include
+>  ```
+>
+>- step2 生成静态库.a文件
+>
+>  ```bash
+>  ar rs libswap.a swap.o
+>  ```
+>
+>  > r：将文件插入备存文件中。
+>  >
+>  > s：若备存文件中包含了对象模式，可利用此参数建立备存文件的符号表。
+>  >
+>  > [Linux ar命令](https://www.runoob.com/linux/linux-comm-ar.html)
+>
+>- step3 链接生成可执行文件
+>
+>  ```bash
+>  cd ..
+>  g++ main.cpp -l swap -L src/ -I include/ -o static_main
+>  ```
+>
+>  注意，-l会**先搜索libxxxx.so文件**，若libxxxx.so不存在，才会搜索libxxxx.a文件。即若动态库存在，则最终编译生成的可执行文件依赖于动态库，否则才生成依赖于静态库的可执行文件。
+
+
+
+## 1.5 动态库编译
+
+>文件结构同静态库编译
+>
+>- step1  生成动态库
+>
+> ```bash
+>cd src
+>g++ swap.cpp -I ../include/ -fPIC -shared -o libswap.so
+> ```
+>
+>- step2  编译
+>
+> ```bash
+> cd ..
+> g++ main.cpp -l swap -L src/ -I include/ -o dynamic_main
+> ```
+>
+>- step3 指定动态库目录
+>
+>  >永久指定
+>  >
+>  >```bash
+>  >echo export LD_LIBRARY_PATH=/home/tmo/swap_demo/src:$LD_LIBRARY_PATH >> ~/.basrc
+>  >source ~/.bashrc
+>  >```
+>
+>  > 临时指定
+>  >
+>  > ```bash
+>  > LD_LIBRARY_PATH=/home/tmo/swap_demo/src
+>  > ```
