@@ -222,7 +222,7 @@ Email:geniuslgx@mail.ustc.edu.com
 >> ```
 >>
 >> -fPIC：表示与路径无关
->>
+>>>
 >> -shared：表示生成动态库
 >
 >- **step2  编译**
