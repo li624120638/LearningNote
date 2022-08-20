@@ -399,14 +399,14 @@ Email:geniuslgx@mail.ustc.edu.com
 >
 > - **project**
 >
-> > 定义工程名称，并指定工程支持语言
-> >
-> > ```cmake
-> > # 语法：
-> > project(projectname [CXX] [C] [JAVA])
-> > # 如：指定工程名称为hello，指定语言为c++
-> > project(hello CXX)
-> > ```
+>   >定义工程名，并制定工程所用的变成语言
+>   >
+>   >```cmake
+>   ># 语法：
+>   >project(projectname [CXX] [C] [JAVA])
+>   ># 如：指定工程名称为hello，指定语言为c++
+>   >project(hello CXX)
+>   >```
 >
 > - **set**
 >
@@ -465,11 +465,11 @@ Email:geniuslgx@mail.ustc.edu.com
 >
 > - **add_executable**
 >
->   > 生成可执行文件
->   >
->   > ```cmake
->   > # 语法：
->   > add_executable(execname src1 src2 ...)
+> > 生成可执行文件
+> >
+> > ```cmake
+> > # 语法：
+> > add_executable(execname src1 src2 ...)
 >   > # 如：编译main.cpp生成可执行文件main
 >   > add_executable(main main.cpp)
 >   > ```
@@ -482,7 +482,7 @@ Email:geniuslgx@mail.ustc.edu.com
 > > # 语法：
 > > target_link_libraries(target lib1 lib2)
 > > # 如：将libswap.so动态库文件，链接到可执行文件main
-> > target_link_libraries(main swap)
+> > target_link_libraries(main swap)	
 > > ```
 >
 > - **add_subdirectory**
@@ -496,10 +496,112 @@ Email:geniuslgx@mail.ustc.edu.com
 > > add_subdirectory(src)
 > > ```
 > >
-> > 
 >
-> - 2
-> - 2
-> - 2
-> - 2
+> - **aux_source_directory**
+>
+>   >发现目录下所有源代码文件并将列表存储在一个变量中，这个指令临时被用来自动构建源文件列表
+>   >
+>   >```cmake
+>   ># 语法：
+>   >aux_source_directory(dir VARIABLE)
+>   ># 如：发现当前目录下的所有源代码文件，并将其值保存到SRC变量中，编译可执行文件main，将其引入
+>   >aux_source_directory(. SRC)
+>   >add_executable(main ${SRC})
+>   >```
 
+## 3.3 常用变量
+
+>- **CMAKE_C_FLAGE**或**CMAKE_CXX_FLAGE**
+>
+>> gcc或者g++的编译选项
+>>
+>> ```cmake
+>> # 在CMAKE_CXX_FLAGE编译选项后追加-std=c++11
+>> set(CMAKE_CXX_FLAGE "${CMAKE_CXX_FLAGE} -std=c++11")
+>> ```
+>
+>- **CMAKE_BUILD_TYPE**
+>
+>  > 设置编译类型，Release 或者 Debug
+>  >
+>  > ```cmake
+>  > # 设置编译类型为Release
+>  > set(CMAKE_BUILD_TYPE Release)
+>  > ```
+>  >
+>  > 
+
+## 3.4 案例
+
+>目录结构如下：
+>
+>```bash
+>.
+>├── build
+>├── CMakeLists.txt
+>├── include
+>│   └── swap.h
+>├── main.cpp
+>└── src
+>    └── swap.cpp
+>```
+>
+>CMakeLists.txt内容如下：
+>
+>```cmake
+># 指定最小版本
+>cmake_minimum_required(VERSION 3.0)
+>
+># 指定工程名和支持语言
+>project(SWAP CXX C)
+>
+># 添加编译参数
+>add_compile_options(-Wall -O2 -std=c++11)
+>
+># PROJECT_SOURCE_DIR 为CMakeList.txt所在的目录
+># EXECUTABLE_OUTPUT_PATH 可执行文件的输出目录，默认为构建目录
+># LIBRARY_OUTPUT_PATH 库文件的输出目录，默认为构建目录
+>SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+>SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+>
+># 添加头文件搜索目录
+>include_directories(include)
+>
+># 编译生成动态库libswap.so，并加入到LIBRARY_OUTPUT_PATH路径中
+>add_library(swap SHARED src/swap.cpp)
+>
+># 添加库文件搜索目录
+>link_directories(./lib)
+>
+># 生成可执行文件main，并加入到EXECUTABLE_OUTPUT_PATH路径中
+>add_executable(main main.cpp)
+>
+># 将动态库libswap.so链接到main上
+>target_link_libraries(main swap)
+>```
+>
+>构建指令如下：
+>
+>```bash
+>cd build
+>camke ..
+>make
+>```
+>
+>最终生成的除build目录结构如下：
+>
+>```bash
+>.
+>├── bin
+>│   └── main
+>├── CMakeLists.txt
+>├── include
+>│   └── swap.h
+>├── lib
+>│   └── libswap.so
+>├── main.cpp
+>└── src
+>    └── swap.cpp
+>```
+>
+>
