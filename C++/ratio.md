@@ -31,7 +31,7 @@ Email:geniuslgx@mail.ustc.edu.cn
 >
 > ratio不是该类型的一个对象，而是类型本身，在编译的时候使用**常量成员**(Numerator和Denominator是常数)来定义ratio。因此，ratio只能用来表示**constexpr常量**，而**不能表示变量**。
 >
-> 该模板常用于构造[**Duration**](./chrono.md/#Duration)
+> 该模板常用于构造[**duration**](./chrono.md/#duration)
 # 2. 已定义实例
 
 >|  type   | definition                           | description |
