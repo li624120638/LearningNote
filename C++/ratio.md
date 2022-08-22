@@ -93,7 +93,7 @@ Email:geniuslgx@mail.ustc.edu.cn
 > typedef std::ratio<1,3> one_third;
 > typedef std::ratio<1,4> one_fourth;
 > typedef std::ratio_equal<one_third,one_fourth>equal;
-> std::cout << "1/3 == 1/4 ? " << std::boolalpha;  // 空出输出为bool类型而不是int
+> std::cout << "1/3 == 1/4 ? " << std::boolalpha;  // 控制出输出显示为bool类型而不是int
 > // 调用公有成员value获得其值
 > std::cout << equal::value << std::endl;
 > ```
