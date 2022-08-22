@@ -4,6 +4,8 @@ Date：2022.08.22 10:23:52
 Email:geniuslgx@mail.ustc.edu.cn
 ```
 
+#include<ratio>
+
 # 1. 构造使用
 
 > ```c++
