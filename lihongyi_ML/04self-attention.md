@@ -70,11 +70,11 @@ Self-attention
 >
 >self-attention的输入可以是**初始输入x**或者**某个隐藏层的输出**，记为
 >
->​										$A_{m\times n}=(a^1\ \ a^2\ ...\ a^n)$，其中$a^i={\begin{pmatrix} a^i_1 \\a^i_2\\...\\a^i_m\end{pmatrix}}_{m\times1}$n为输入向量的个数，m为输入向量的维度。
+>​										$A_{m\times n}=(a^1\ \ a^2\ ...\ a^n)$，其中$a^i={\begin{pmatrix} a^i_1 \\a^i_2\\...\\a^i_m\end{pmatrix}}_{m\times 1}$n为输入向量的个数，m为输入向量的维度。
 >
 >产生的输出记为
 >
->​										$B_{p\times n}=(b^1\ \ b^2\ ...\ b^n)$，其中$b^i={\begin{pmatrix} b^i_1 \\b^i_2\\...\\b^i_p\end{pmatrix}}_{p\times1}$p为输出向量的维度，p可以等于m，也可以不等。
+>​										$B_{p\times n}=(b^1\ \ b^2\ ...\ b^n)$，其中$b^i={\begin{pmatrix} b^i_1 \\b^i_2\\...\\b^i_p\end{pmatrix}}_{p\times 1}$p为输出向量的维度，p可以等于m，也可以不等。
 >
 >![04](../images/lihongyi_ML/self-attention04.jpg)
 >
@@ -104,13 +104,13 @@ Self-attention
 >
 >提示：$W^q$与$W^k$为$s\times m$型，$W^v$为$p\times m$型，$A$为输入，$B$为输出，实际场景中m与n已知，s与p可以根据任务而设定。
 >
->$Q_{s\times n}=W^q A_{m\times n}=(q^1\ q^2\ ...\ q^n)$，其中$q^i={\begin{pmatrix} q^i_1 \\q^i_2\\...\\q^i_s\end{pmatrix}}_{s\times1}$，$K_{s\times n}=W^k A_{m\times n}=(k^1\ k^2\ ...\ k^n)$，其中$k^i={\begin{pmatrix} k^i_1 \\k^i_2\\...\\k^i_s\end{pmatrix}}_{s\times1}$
+>$Q_{s\times n}=W^q A_{m\times n}=(q^1\ q^2\ ...\ q^n)$，其中$q^i={\begin{pmatrix} q^i_1 \\q^i_2\\...\\q^i_s\end{pmatrix}}_{s\times 1}$，$K_{s\times n}=W^k A_{m\times n}=(k^1\ k^2\ ...\ k^n)$，其中$k^i={\begin{pmatrix} k^i_1 \\k^i_2\\...\\k^i_s\end{pmatrix}}_{s\times 1}$
 >
 >相关性系数矩阵$C_{n\times n}=Q^TK=\begin{pmatrix}\alpha^{'}_{11}&\alpha^{'}_{12}&...&\alpha^{'}_{1n}\\\alpha^{'}_{21}&\alpha^{'}_{21}&...&\alpha^{'}_{2n}\\...&...&...&...\\\alpha^{'}_{n1}&\alpha^{'}_{n2}&...&\alpha^{'}_{nn}\end{pmatrix}$，或被称为Attention矩阵
 >
 >
 >
->$V_{p\times n}=W^v A_{m\times n}=(v^1\ v^2\ ...\ v^n)$，其中$v^i={\begin{pmatrix} v^i_1 \\v^i_2\\...\\v^i_p\end{pmatrix}}_{p\times1}$
+>$V_{p\times n}=W^v A_{m\times n}=(v^1\ v^2\ ...\ v^n)$，其中$v^i={\begin{pmatrix} v^i_1 \\v^i_2\\...\\v^i_p\end{pmatrix}}_{p\times 1}$
 >
->$B_{p\times n}=VC=(b^1\ \ b^2\ ...\ b^n)$，其中$b^i={\begin{pmatrix} b^i_1 \\b^i_2\\...\\b^i_p\end{pmatrix}}_{p\times1}$
+>$B_{p\times n}=VC=(b^1\ \ b^2\ ...\ b^n)$，其中$b^i={\begin{pmatrix} b^i_1 \\b^i_2\\...\\b^i_p\end{pmatrix}}_{p\times 1}$
 
